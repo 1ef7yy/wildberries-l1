@@ -7,8 +7,10 @@ func main() {
 
 	temperatures := []float32{-25.4, -27.0, 13.0, 19.0, 15.5, 24.5, -21.0, 32.5}
 
+	// округляем температуру до ближайшего к 10 с помощью (temp/10)*10
 	for _, temp := range temperatures {
-		ranges[int(temp/10)*10] = append(ranges[int(temp/10)*10], float32(temp))
+		roundTemp := int(temp/10) * 10
+		ranges[roundTemp] = append(ranges[roundTemp], temp)
 	}
 
 	for tempRange, temps := range ranges {

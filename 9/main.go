@@ -27,24 +27,24 @@ func printer(ch chan int) {
 
 func main() {
 	nums := []int{1, 2, 3, 4, 5}
-	ch1 := make(chan int)
-	ch2 := make(chan int)
+	producing_ch := make(chan int)
+	read_ch := make(chan int)
 
 	var wg sync.WaitGroup
 	wg.Add(3)
 
 	go func() {
-		producer(nums, ch1)
+		producer(nums, producing_ch)
 		wg.Done()
 	}()
 
 	go func() {
-		multiplier(ch1, ch2)
+		multiplier(producing_ch, read_ch)
 		wg.Done()
 	}()
 
 	go func() {
-		printer(ch2)
+		printer(read_ch)
 		wg.Done()
 	}()
 

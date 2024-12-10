@@ -6,15 +6,17 @@ import (
 )
 
 func splitString(s string) string {
+	// разбиваем строку на слова
 	words := strings.Split(s, " ")
-	var new_word string
-	for i := len(words); i > 0; i-- {
-		new_word += words[i-1] + " "
+	// опять свапаем in-place
+	for i := 0; i < len(words)/2; i++ {
+		words[i], words[len(words)-i-1] = words[len(words)-i-1], words[i]
 	}
-	return new_word
+	return strings.Join(words, " ")
 }
 
 func main() {
 	s := "snow dog sun"
-	fmt.Println(splitString(s))
+	fmt.Printf("Before split: %s\n", s)
+	fmt.Printf("After split: %s\n", splitString(s))
 }

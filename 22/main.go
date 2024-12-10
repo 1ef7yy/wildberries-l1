@@ -5,6 +5,7 @@ import (
 	"math/big"
 )
 
+// библиотека math/big предназначена для работы с большими числами
 func main() {
 	a, _ := new(big.Int).SetString("4194304", 10) // 2^22
 	b, _ := new(big.Int).SetString("2097152", 10) // 2^21

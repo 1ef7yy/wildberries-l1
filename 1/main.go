@@ -15,6 +15,9 @@ func (h *Human) walk() {
 	fmt.Println("I'm walking.")
 }
 
+// структура Action сможет вызывать все методы
+// которые реализованы в Human
+// т.е. аналог наследования
 type Action struct {
 	Human
 	action string

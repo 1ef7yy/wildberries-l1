@@ -7,6 +7,7 @@ import (
 
 func sleep(d time.Duration) {
 	start := time.Now()
+	// происходит пока время не станет меньше длительности
 	for time.Since(start) < d {
 	}
 }

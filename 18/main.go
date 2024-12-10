@@ -5,6 +5,7 @@ import (
 	"sync"
 )
 
+// опять избегаем race condition с помощью мьютекса
 type Counter struct {
 	mu    *sync.Mutex
 	value int64

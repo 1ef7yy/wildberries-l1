@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// то же что и в предыдущем задании, но с использованием string вместо interface{}
 type StringSet struct {
 	data map[string]bool
 }

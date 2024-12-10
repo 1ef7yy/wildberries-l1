@@ -6,8 +6,10 @@ import (
 )
 
 func IsUnique(s string) bool {
+	// tolower для регистронезависимости
 	lower := strings.ToLower(s)
 	chars := make(map[rune]bool)
+	// проверяем уникальность
 	for _, char := range lower {
 		if chars[char] {
 			return false

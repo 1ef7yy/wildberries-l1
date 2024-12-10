@@ -2,10 +2,13 @@ package main
 
 import "fmt"
 
+// 1. Выбираем pivot (опору)
+// 2. Перемещаем элементы меньше pivot слева и больше справа
+// 3. Вызываем рекурсивно quickSort для левого и правого подмассива
+
 func quickSort(arr []int, low int, high int) {
 	if low < high {
 		pi := partition(arr, low, high)
-
 		quickSort(arr, low, pi-1)
 		quickSort(arr, pi+1, high)
 	}

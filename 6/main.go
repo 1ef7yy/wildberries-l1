@@ -4,7 +4,10 @@ import (
 	"context"
 	"fmt"
 	"sync"
+	"time"
 )
+
+// https://stackoverflow.com/questions/6807590/how-to-stop-a-goroutine
 
 func workerChan(stop chan bool) {
 	for {
@@ -24,8 +27,6 @@ func workerContext(ctx context.Context) {
 		case <-ctx.Done():
 			fmt.Println("stop workerContext")
 			return
-		default:
-			fmt.Println("do work")
 		}
 	}
 }
@@ -69,4 +70,5 @@ func main() {
 	go workerWG(&wg)
 	wg.Wait()
 
+	time.Sleep(500 * time.Millisecond)
 }

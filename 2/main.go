@@ -17,8 +17,10 @@ func main() {
 
 	for _, num := range nums {
 		wg.Add(1)
+		// запускаем горутину
 		go square(&wg, num)
 	}
 
+	// ждем завершения всех горутин
 	wg.Wait()
 }
