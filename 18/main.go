@@ -3,27 +3,24 @@ package main
 import (
 	"fmt"
 	"sync"
+	"sync/atomic"
 )
 
 // опять избегаем race condition с помощью мьютекса
 type Counter struct {
-	mu    *sync.Mutex
-	value int64
+	value int32
 }
 
-func (c *Counter) Increment() {
-	c.mu.Lock()
-	defer c.mu.Unlock()
-	c.value++
+func (c *Counter) Increment(amount int32) {
+	atomic.AddInt32(&c.value, amount)
 }
 
-func (c *Counter) GetValue() int64 {
+func (c *Counter) GetValue() int32 {
 	return c.value
 }
 
 func main() {
 	counter := &Counter{
-		mu:    &sync.Mutex{},
 		value: 0,
 	}
 
@@ -34,7 +31,7 @@ func main() {
 		go func() {
 			defer wg.Done()
 			for j := 0; j < 1000; j++ {
-				counter.Increment()
+				counter.Increment(int32(1))
 			}
 		}()
 	}
